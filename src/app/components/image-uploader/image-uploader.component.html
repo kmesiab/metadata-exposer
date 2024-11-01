@@ -1,0 +1,55 @@
+<div class="exposer-container">
+  <mat-toolbar color="primary">
+    <span>Exposer</span>
+  </mat-toolbar>
+
+  <div class="tagline">Reveal hidden image titles effortlessly.</div>
+
+  <div class="upload-section">
+    <input type="file" #fileInput (change)="onFileSelected($event)" multiple accept="image/*" style="display: none;" />
+    <button mat-raised-button color="accent" (click)="fileInput.click()">
+      <mat-icon>upload</mat-icon> Upload Images
+    </button>
+  </div>
+
+  <div class="results" *ngIf="fileMetadataList.length">
+    <h3>Results</h3>
+    <p>Processed {{ fileMetadataList.length }} files in {{ timeTaken | number }} ms</p>
+    <p>Memory used: {{ memoryUsed | number:'1.2-2' }} MB</p>
+    <div *ngFor="let file of fileMetadataList" class="file-result">
+      <div class="preview-section">
+        <img [src]="file.previewUrl" alt="Image Preview" class="image-preview" />
+      </div>
+      <div class="metadata-section">
+        <div class="metadata-title">
+          <strong>{{ getDisplayTitle(file.metadata) }}</strong>
+          <a (click)="file.expanded = !file.expanded" class="expander-link">
+            <mat-icon>{{ file.expanded ? 'expand_less' : 'expand_more' }}</mat-icon> Show more metadata
+          </a>
+        </div>
+        <div *ngIf="file.expanded" class="expandable-content">
+          <mat-card>
+            <mat-card-content>
+              <ul>
+                <li *ngFor="let key of objectKeys(file.metadata)">
+                  <strong>{{ key }}:</strong>
+                  <span *ngIf="isObject(file.metadata[key]); else primitive">
+                    <table class="sub-table">
+                      <tr *ngFor="let subKey of objectKeys(file.metadata[key])">
+                        <td><strong>{{ subKey }}:</strong></td>
+                        <td>{{ file.metadata[key][subKey] }}</td>
+                      </tr>
+                    </table>
+                  </span>
+                  <ng-template #primitive>
+                    {{ file.metadata[key] }}
+                  </ng-template>
+                </li>
+              </ul>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,196 @@
+$brand-color: #4a90e2;
+$secondary-color: #f4f4f9;
+$text-color: #333;
+$font-family: 'Arial', sans-serif;
+
+.exposer-container {
+  max-width: 800px;
+  margin: 40px auto;
+  text-align: center;
+  color: $text-color;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: $font-family;
+
+  h1 {
+    font-size: 2.5em;
+    color: $brand-color;
+    margin-bottom: 0.2em;
+    font-weight: bold;
+  }
+
+  .tagline {
+    font-size: 1.2em;
+    margin-bottom: 2em;
+    color: darken($brand-color, 20%);
+    line-height: 1.4;
+  }
+
+  .upload-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2em;
+
+    input[type='file'] {
+      display: none;
+    }
+
+    .upload-btn {
+      background: $brand-color;
+      color: #fff;
+      padding: 0.6em 1.2em;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-weight: bold;
+
+      &:hover {
+        background: darken($brand-color, 10%);
+      }
+    }
+  }
+
+  .results {
+    background: $secondary-color;
+    padding: 1em;
+    border-radius: 5px;
+    text-align: left;
+    overflow: hidden; /* Ensure content does not overflow */
+
+    h3 {
+      color: $brand-color;
+      font-size: 1.5em;
+      margin-bottom: 0.8em;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 1em;
+      color: $text-color;
+      margin-bottom: 1em;
+    }
+
+    .file-result {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 20px;
+      margin-bottom: 2em;
+      padding: 1em;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+      .preview-section {
+        text-align: center;
+
+        h3 {
+          color: $brand-color;
+          font-size: 1.2em;
+          margin-bottom: 0.5em;
+          font-weight: bold;
+        }
+
+        .image-preview {
+          max-width: 100%; /* Responsive */
+          max-height: 200px; /* Limit height */
+          display: block; /* Make sure it behaves like a block element */
+          margin: 0 auto; /* Center the image */
+          border-radius: 10px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+      }
+
+      .metadata-section {
+        overflow: auto; /* Ensure metadata does not overflow */
+
+        .metadata-title {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 0.5em;
+
+          strong {
+            font-size: 1.2em;
+            color: $brand-color;
+          }
+
+          .expander-link {
+            background: none;
+            border: none;
+            color: $brand-color;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: 0;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+
+            &:hover {
+              color: darken($brand-color, 10%);
+            }
+
+            .icon {
+              margin-left: 0.5em;
+              transition: transform 0.3s;
+            }
+
+            .icon-up {
+              transform: rotate(180deg);
+            }
+
+            .icon-down {
+              transform: rotate(0deg);
+            }
+          }
+        }
+
+        ul {
+          list-style: none;
+          padding: 0;
+
+          li {
+            background: #f9f9f9;
+            margin-bottom: 0.5em;
+            padding: 0.5em;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            line-height: 1.4;
+
+            strong {
+              color: darken($brand-color, 15%);
+              font-weight: bold;
+            }
+
+            pre {
+              background: #f4f4f9;
+              padding: 0.5em;
+              border-radius: 4px;
+              overflow: auto;
+              max-height: 200px;
+            }
+
+            .sub-table {
+              width: 100%;
+              border-collapse: collapse;
+              margin-top: 0.5em;
+
+              td {
+                padding: 0.3em;
+                border: 1px solid #ddd;
+              }
+
+              strong {
+                color: $brand-color;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
